@@ -11,6 +11,7 @@ public class Driver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(new Vector3(0, 0, 1), Time.deltaTime * 100f);
+        transform.Translate(new Vector3(0, Time.deltaTime * 10f, 0));
     }
 }
