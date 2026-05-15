@@ -18,6 +18,7 @@ public class DeliveryHandler : MonoBehaviour
         if (other.CompareTag("Customer") && hasPackage)
         {
             hasPackage = false;
+            Destroy(other.gameObject);
             Debug.Log("Item delivered");
             GetComponent<ParticleSystem>().Stop();
         }

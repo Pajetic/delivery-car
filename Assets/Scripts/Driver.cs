@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,13 @@ public class Driver : MonoBehaviour
     [SerializeField] private float boostSpeed = 10f;
     [SerializeField] private float currentSpeed = 5f;
 
-    // Update is called once per frame
+    [SerializeField] private TextMeshProUGUI boostText;
+
+    private void Start()
+    {
+        boostText.gameObject.SetActive(false);
+    }
+
     private void Update()
     {
         float move = 0f;
@@ -45,6 +52,7 @@ public class Driver : MonoBehaviour
         if (other.CompareTag("Boost"))
         {
             currentSpeed = boostSpeed;
+            boostText.gameObject.SetActive(true);
             Destroy(other.gameObject);
             Debug.Log("Boost");
         }
@@ -52,6 +60,8 @@ public class Driver : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        boostText.gameObject.SetActive(false);
         currentSpeed = baseSpeed;
+        Debug.Log("Boost Lost");
     }
 }
